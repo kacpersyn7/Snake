@@ -7,8 +7,8 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <ncurses.h>
-#define M_COLS (30)
-#define M_ROWS (30)
+#define M_COLS (20)
+#define M_ROWS (20)
 typedef enum dir {
     DOWN, UPS, LEFT, RIGHT} direction_t;
 typedef struct point

@@ -46,21 +46,22 @@ void showGame(int height, int width, point_t start)
         ch = wgetch(text);
         switch (ch)
         {
-            case 'w': //w górę
+            case 'w': 
                 changeStartDirection(&snake, DOWN);
                 break;
-            case 's':  //w dół
+            case 's':  
                 changeStartDirection(&snake, UPS);
                 break;
-            case 'a': //w lewo
+            case 'a': 
                 changeStartDirection(&snake, LEFT);
                 break;
-            case 'd': //w prawo
+            case 'd': 
                 changeStartDirection(&snake, RIGHT);
-            case 'u': //w prawo
+		break;
+            case 'u': 
                 DELAY-=10;
                 break;
-            case 'j': //w prawo
+            case 'j': 
                 DELAY+=10;
                 break;
             default:
