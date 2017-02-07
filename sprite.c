@@ -18,8 +18,6 @@ int addStart(sprite_t *sprite, point_t startpoint)
     new->next_s = NULL;
     sprite->m_head = new;
     sprite->m_end = new;
-    /*addEnd(sprite);
-    addEnd(sprite);*/
     return 0;
 }
 int addEnd(sprite_t *sprite)
@@ -143,20 +141,6 @@ bool checkError(sprite_t sprite)
         }
     return error;
 }
-int randome(int min, int max)
-{
-    srand(time(NULL));
-    int tmp;
-    if (max>=min)
-        max-= min;
-    else
-    {
-        tmp= min - max;
-        min= max;
-        max= tmp;
-    }
-    return max ? (rand() % max + min) : min;
-}
 bool checkContact(sprite_t sprite, point_t *bomb, int n)
 {
     snake_t *pointer = sprite.m_head;
@@ -165,12 +149,12 @@ bool checkContact(sprite_t sprite, point_t *bomb, int n)
         int temp;
         point_t *tab = malloc(n * sizeof(point_t));
         int k = 0;
-        bool error = true;
+        bool error;
         for (int i = 1; i < M_ROWS-1; ++i){
             for (int j = 1; j < M_COLS-1; ++j)
             {
                 pointer = sprite.m_head;
-                error = 1;
+                error = true;
                 while (pointer != NULL && error)
                 {
                     if (pointer->position.x == i && pointer->position.y == j)

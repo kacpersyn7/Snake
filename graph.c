@@ -22,23 +22,23 @@ void showGame(int height, int width, point_t start)
     bool flag = false;
     init_pair(4, COLOR_BLUE, COLOR_GREEN);
     init_pair(5, COLOR_BLUE, COLOR_MAGENTA);
-    int starty = (LINES - height) / 2;	// Calculating for a center placement
+    int starty = (LINES - height) / 2;
     int startx = (COLS - width) / 2;
     win = newwin(height, width, starty, startx);
     menu = newwin(10,15,starty,startx + width);
-    text = newwin(20,30,starty,startx - width);
+    text = newwin(10,20,starty,startx - width);
     wrefresh(text);
     wrefresh(win);
     wrefresh(menu);
-    mvwprintw(text,1,1,"sterowanie: wsad\n k by zakonczyc\n"
-                       "u,j zmiana predkosci");
+    mvwprintw(text,1,1,"sterowanie: wsad\n"
+                       "k by zakonczyc\n"
+                       "zmiana predkosci:u,j");
     wrefresh(text);
     char ch;
     do
     {
         mvwprintw(menu,1,1,"score:%d",score);
         wrefresh(menu);
-        wclear(menu);
         if(flag)
             addEnd(&snake);
         flag = false;
@@ -57,7 +57,7 @@ void showGame(int height, int width, point_t start)
                 break;
             case 'd': 
                 changeStartDirection(&snake, RIGHT);
-		break;
+		        break;
             case 'u': 
                 DELAY-=10;
                 break;
@@ -75,6 +75,7 @@ void showGame(int height, int width, point_t start)
         }
         if(checkError(snake))
         {
+            wclear(menu);
             deleteAll(&snake);
             addStart(&snake, start);
             score = 0;
@@ -83,6 +84,8 @@ void showGame(int height, int width, point_t start)
     }
     while(ch != 'k');
     deleteAll(&snake);
+    delwin(text);
+    delwin(menu);
     delwin(win);
     endwin();
 }
