@@ -27,6 +27,7 @@ void showGame(int height, int width, point_t start)
     win = newwin(height, width, starty, startx);
     menu = newwin(10,15,starty,startx + width);
     text = newwin(10,20,starty,startx - width);
+    curs_set(0);
     wrefresh(text);
     wrefresh(win);
     wrefresh(menu);
